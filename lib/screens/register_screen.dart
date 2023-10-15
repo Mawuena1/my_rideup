@@ -1,7 +1,11 @@
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:myrideup/global/global.dart';
+import 'package:myrideup/screens/main_page.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -18,10 +22,40 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final passwordTextEditingController = TextEditingController();
   final confirmTextEditingController = TextEditingController();
 
-  // final bool _passwordVisible = false;
-
   // //declare a global key
-  // final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
+
+  void _submit() async {
+    //validate all the form fields
+    if (_formKey.currentState!.validate()) {
+      await firebaseAuth
+          .createUserWithEmailAndPassword(
+              email: emailTextEditingController.text.trim(),
+              password: passwordTextEditingController.text.trim())
+          .then((auth) async {
+        currentUser = auth.user;
+        if (currentUser != null) {
+          Map userMap = {
+            "id": currentUser!.uid,
+            "name": nameTextEditingController.text.trim(),
+            "email": emailTextEditingController.text.trim(),
+            "phone": phoneTextEditingController.text.trim(),
+          };
+          DatabaseReference userRef =
+              FirebaseDatabase.instance.ref().child("users");
+          userRef.child(currentUser!.uid).set(userMap);
+        }
+        await Fluttertoast.showToast(msg: "Successfully Registered");
+        // ignore: use_build_context_synchronously
+        Navigator.push(
+            context, MaterialPageRoute(builder: (c) => const MainScreen()));
+      }).catchError((errorMessage) {
+        Fluttertoast.showToast(msg: "Error Occured: \n $errorMessage");
+      });
+    } else {
+      Fluttertoast.showToast(msg: "Not all fields are valid");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +72,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
           children: [
             Column(
               children: [
-                Image.asset(
-                    darkTheme ? 'images/boat.jpg' : 'images/bluescene.jpg'),
+                // Image.asset(
+                //     darkTheme ? 'images/boat.jpg' : 'images/bluescene.jpg'),
                 const SizedBox(
                   height: 20,
                 ),
@@ -57,6 +91,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Form(
+                        key: _formKey,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -130,7 +165,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       ),
                                     ),
                                     prefixIcon: Icon(
-                                      Icons.person,
+                                      Icons.email,
                                       color: darkTheme
                                           ? Colors.amber.shade400
                                           : Colors.grey,
@@ -338,7 +373,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                               BorderRadius.circular(32)),
                                       minimumSize:
                                           const Size(double.infinity, 50)),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    _submit();
+                                  },
                                   child: const Text(
                                     'Register',
                                     style: TextStyle(
@@ -347,15 +384,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   ),
                                 ),
                                 const SizedBox(height: 20),
-                                GestureDetector(
-                                  onTap: () {},
-                                  child: Text(
-                                    'Already have an account? Login',
-                                    style: TextStyle(
-                                        color: darkTheme
-                                            ? Colors.amber.shade400
-                                            : Colors.blue),
-                                  ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Text(
+                                      'Already have an account?',
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 15,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 20),
+                                    GestureDetector(
+                                      onTap: () {},
+                                      child: Text(
+                                        'Sign In',
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            color: darkTheme
+                                                ? Colors.amber.shade400
+                                                : Colors.blue),
+                                      ),
+                                    )
+                                  ],
                                 )
                               ],
                             ),
