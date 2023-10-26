@@ -8,6 +8,7 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:myrideup/global/global.dart';
 import 'package:myrideup/global/utils/functions.dart';
 import 'package:myrideup/global/utils/toast.dart';
+import 'package:myrideup/screens/login_screen.dart';
 import 'package:myrideup/screens/main_page.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -407,7 +408,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       ),
                                       const SizedBox(height: 20),
                                       GestureDetector(
-                                        onTap: () {},
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (c) =>
+                                                      const LoginScreen()));
+                                        },
                                         child: Text(
                                           'Sign In',
                                           style: TextStyle(
