@@ -3,7 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:myrideup/screens/forgot_password_screen.dart';
 import 'package:myrideup/screens/main_page.dart';
+import 'package:myrideup/screens/register_screen.dart';
 
 import '../global/global.dart';
 import '../global/utils/functions.dart';
@@ -51,6 +53,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool darkTheme =
+        MediaQuery.of(context).platformBrightness == Brightness.dark;
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -62,15 +66,15 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               Column(
                 children: [
-                  // Image.asset(
-                  //     darkTheme ? 'images/boat.jpg' : 'images/bluescene.jpg'),
+                  Image.asset(
+                      darkTheme ? 'images/boat.jpg' : 'images/bluescene.jpg'),
                   const SizedBox(
                     height: 20,
                   ),
-                  const Text(
+                  Text(
                     'Login',
                     style: TextStyle(
-                      // color: darkTheme ? Colors.amber.shade400 : Colors.blue,
+                      color: darkTheme ? Colors.amber.shade400 : Colors.blue,
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
                     ),
@@ -98,9 +102,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                         color: Colors.grey,
                                       ),
                                       filled: true,
-                                      // fillColor: darkTheme
-                                      //     ? Colors.black45
-                                      //     : Colors.grey.shade200,
+                                      fillColor: darkTheme
+                                          ? Colors.black45
+                                          : Colors.grey.shade200,
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(40),
                                         borderSide: const BorderSide(
@@ -108,11 +112,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                           style: BorderStyle.none,
                                         ),
                                       ),
-                                      prefixIcon: const Icon(
+                                      prefixIcon: Icon(
                                         Icons.email,
-                                        // color: darkTheme
-                                        //     ? Colors.amber.shade400
-                                        //     : Colors.grey,
+                                        color: darkTheme
+                                            ? Colors.amber.shade400
+                                            : Colors.grey,
                                       ),
                                     ),
                                     autovalidateMode:
@@ -149,9 +153,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                           color: Colors.grey,
                                         ),
                                         filled: true,
-                                        // fillColor: darkTheme
-                                        //     ? Colors.black45
-                                        //     : Colors.grey.shade200,
+                                        fillColor: darkTheme
+                                            ? Colors.black45
+                                            : Colors.grey.shade200,
                                         border: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(40),
@@ -160,20 +164,20 @@ class _LoginScreenState extends State<LoginScreen> {
                                             style: BorderStyle.none,
                                           ),
                                         ),
-                                        prefixIcon: const Icon(
+                                        prefixIcon: Icon(
                                           Icons.lock,
-                                          // color: darkTheme
-                                          //     ? Colors.amber.shade400
-                                          //     : Colors.grey,
+                                          color: darkTheme
+                                              ? Colors.amber.shade400
+                                              : Colors.grey,
                                         ),
                                         suffixIcon: IconButton(
                                           icon: Icon(
                                             _passwordVisible
                                                 ? Icons.visibility
                                                 : Icons.visibility_off,
-                                            // color: darkTheme
-                                            //     ? Colors.amber.shade400
-                                            //     : Colors.grey,
+                                            color: darkTheme
+                                                ? Colors.amber.shade400
+                                                : Colors.grey,
                                           ),
                                           onPressed: () {
                                             setState(() {
@@ -203,12 +207,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                   const SizedBox(height: 20),
                                   ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                        // foregroundColor: darkTheme
-                                        //     ? Colors.black
-                                        //     : Colors.white,
-                                        // backgroundColor: darkTheme
-                                        //     ? Colors.amber.shade400
-                                        //     : Colors.blue,
+                                        foregroundColor: darkTheme
+                                            ? Colors.black
+                                            : Colors.white,
+                                        backgroundColor: darkTheme
+                                            ? Colors.amber.shade400
+                                            : Colors.blue,
                                         elevation: 0,
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
@@ -227,38 +231,52 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                   const SizedBox(height: 20),
                                   GestureDetector(
-                                    child: const Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [Text("Forget Password?")],
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (c) =>
+                                                  const ForgotPasswordScreen()));
+                                    },
+                                    child: Text(
+                                      'Forgot Password?',
+                                      style: TextStyle(
+                                          color: darkTheme
+                                              ? Colors.amber.shade400
+                                              : Colors.blue),
                                     ),
                                   ),
                                   const SizedBox(height: 20),
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Text(
-                                        'Don\'t have an account?',
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 15,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 20),
-                                      GestureDetector(
-                                        onTap: () {},
-                                        child: const Text(
-                                          'Sign Up',
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        const Text(
+                                          'Don\'t have an account?',
                                           style: TextStyle(
+                                            color: Colors.grey,
                                             fontSize: 15,
-                                            // color: darkTheme
-                                            //     ? Colors.amber.shade400
-                                            //     : Colors.blue),
                                           ),
                                         ),
-                                      )
-                                    ],
-                                  )
+                                        const SizedBox(height: 20),
+                                        GestureDetector(
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (c) =>
+                                                        const RegisterScreen()));
+                                          },
+                                          child: Text(
+                                            'Sign Up',
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                color: darkTheme
+                                                    ? Colors.amber.shade400
+                                                    : Colors.blue),
+                                          ),
+                                        ),
+                                      ])
                                 ],
                               ),
                             ],
