@@ -13,22 +13,22 @@ PODS:
   - Firebase/Storage (10.16.0):
     - Firebase/CoreOnly
     - FirebaseStorage (~> 10.16.0)
-  - firebase_auth (4.12.0):
+  - firebase_auth (4.12.1):
     - Firebase/Auth (= 10.16.0)
     - firebase_core
     - Flutter
-  - firebase_core (2.20.0):
+  - firebase_core (2.21.0):
     - Firebase/CoreOnly (= 10.16.0)
     - Flutter
-  - firebase_database (10.3.2):
+  - firebase_database (10.3.3):
     - Firebase/Database (= 10.16.0)
     - firebase_core
     - Flutter
-  - firebase_messaging (14.7.2):
+  - firebase_messaging (14.7.3):
     - Firebase/Messaging (= 10.16.0)
     - firebase_core
     - Flutter
-  - firebase_storage (11.4.0):
+  - firebase_storage (11.4.1):
     - Firebase/Storage (= 10.16.0)
     - firebase_core
     - Flutter
@@ -74,13 +74,32 @@ PODS:
     - FirebaseCoreExtension (~> 10.0)
     - GTMSessionFetcher/Core (< 4.0, >= 2.1)
   - Flutter (1.0.0)
+  - flutter_geofire (0.0.1):
+    - Flutter
+    - GeoFire (~> 4.0)
   - fluttertoast (0.0.2):
     - Flutter
     - Toast
+  - GeoFire (4.3.0):
+    - GeoFire/Database (= 4.3.0)
+  - GeoFire/Database (4.3.0):
+    - Firebase/Database (~> 10.1)
+    - GeoFire/Utils
+  - GeoFire/Utils (4.3.0)
+  - geolocator_apple (1.2.0):
+    - Flutter
+  - google_maps_flutter_ios (0.0.1):
+    - Flutter
+    - GoogleMaps (< 8.0)
   - GoogleDataTransport (9.2.5):
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleMaps (7.4.0):
+    - GoogleMaps/Maps (= 7.4.0)
+  - GoogleMaps/Base (7.4.0)
+  - GoogleMaps/Maps (7.4.0):
+    - GoogleMaps/Base
   - GoogleUtilities/AppDelegateSwizzler (7.11.5):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -100,6 +119,8 @@ PODS:
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (3.1.1)
   - leveldb-library (1.22.2)
+  - location (0.0.1):
+    - Flutter
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
     - nanopb/encode (= 2.30909.0)
@@ -108,6 +129,8 @@ PODS:
   - PromisesObjC (2.3.1)
   - RecaptchaInterop (100.0.0)
   - Toast (4.0.0)
+  - url_launcher_ios (0.0.1):
+    - Flutter
 
 DEPENDENCIES:
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
@@ -116,7 +139,13 @@ DEPENDENCIES:
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - firebase_storage (from `.symlinks/plugins/firebase_storage/ios`)
   - Flutter (from `Flutter`)
+  - flutter_geofire (from `.symlinks/plugins/flutter_geofire/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
+  - GeoFire (from `https://github.com/mrdishant/geofire-objc`)
+  - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
+  - google_maps_flutter_ios (from `.symlinks/plugins/google_maps_flutter_ios/ios`)
+  - location (from `.symlinks/plugins/location/ios`)
+  - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 SPEC REPOS:
   trunk:
@@ -132,6 +161,7 @@ SPEC REPOS:
     - FirebaseMessaging
     - FirebaseStorage
     - GoogleDataTransport
+    - GoogleMaps
     - GoogleUtilities
     - GTMSessionFetcher
     - leveldb-library
@@ -153,16 +183,33 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_storage/ios"
   Flutter:
     :path: Flutter
+  flutter_geofire:
+    :path: ".symlinks/plugins/flutter_geofire/ios"
   fluttertoast:
     :path: ".symlinks/plugins/fluttertoast/ios"
+  GeoFire:
+    :git: https://github.com/mrdishant/geofire-objc
+  geolocator_apple:
+    :path: ".symlinks/plugins/geolocator_apple/ios"
+  google_maps_flutter_ios:
+    :path: ".symlinks/plugins/google_maps_flutter_ios/ios"
+  location:
+    :path: ".symlinks/plugins/location/ios"
+  url_launcher_ios:
+    :path: ".symlinks/plugins/url_launcher_ios/ios"
+
+CHECKOUT OPTIONS:
+  GeoFire:
+    :commit: 5054b6cfe35486a23111df37b37df67102243958
+    :git: https://github.com/mrdishant/geofire-objc
 
 SPEC CHECKSUMS:
   Firebase: 25899099b77d255a636e3579c3d9dce10ec150d5
-  firebase_auth: 015dab4ffe9e4d97f7d84a3373ad4c8a7712c5c7
-  firebase_core: 2e0e89436a00b664a23bebb08859e5fede7215e9
-  firebase_database: 861128b1c487c47fc72fb13c857ced94482de746
-  firebase_messaging: 2b2ed8f43ca8289caebfa324ada472e527bebcdf
-  firebase_storage: 2972c861e7edafb526553f0f6de65a918e4a9ac0
+  firebase_auth: ff474dcf17bee5762106162e0791433024890ada
+  firebase_core: 68027ba03585e3efe1608e35d3ab2777a64eabe9
+  firebase_database: f676aa735c93c83b465d1aa0f5a48b4d1f5a5200
+  firebase_messaging: e11ea61b449e6e39741b8a309ddab803ef1eb5cd
+  firebase_storage: 39292d9729a2840035c6156fcec73168c7c234d4
   FirebaseAppCheckInterop: 82358cff9f33452dd44259e88eea5e562500b1cb
   FirebaseAuth: 3862d87d4d58deff08f705d471896a2f66e8bbf0
   FirebaseAuthInterop: b79fab8ce80e685145eee5f973d9ad5210e19d44
@@ -174,16 +221,23 @@ SPEC CHECKSUMS:
   FirebaseMessaging: 80b4a086d20ed4fd385a702f4bfa920e14f5064d
   FirebaseStorage: d664834746c0274d267072c6bfa100960f90654a
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  fluttertoast: fafc4fa4d01a6a9e4f772ecd190ffa525e9e2d9c
+  flutter_geofire: bdfbc0c9089638778117d488a9b64b565c277d7a
+  fluttertoast: 31b00dabfa7fb7bacd9e7dbee580d7a2ff4bf265
+  GeoFire: f113536c90f581f89107c31ec1efde1a1cae3115
+  geolocator_apple: cc556e6844d508c95df1e87e3ea6fa4e58c50401
+  google_maps_flutter_ios: abdac20d6ce8931f6ebc5f46616df241bfaa2cfd
   GoogleDataTransport: 54dee9d48d14580407f8f5fbf2f496e92437a2f2
+  GoogleMaps: 032f676450ba0779bd8ce16840690915f84e57ac
   GoogleUtilities: 13e2c67ede716b8741c7989e26893d151b2b2084
   GTMSessionFetcher: e8647203b65cee28c5f73d0f473d096653945e72
   leveldb-library: f03246171cce0484482ec291f88b6d563699ee06
+  location: d5cf8598915965547c3f36761ae9cc4f4e87d22e
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
+  url_launcher_ios: 68d46cc9766d0c41dbdc884310529557e3cd7a86
 
-PODFILE CHECKSUM: cf971cc48f9a24dad86123a61358a2b84ff66492
+PODFILE CHECKSUM: 83aa76bf12bef32b61fa3ec36aba874b88a297cf
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.14.2

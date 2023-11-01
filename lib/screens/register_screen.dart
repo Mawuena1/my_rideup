@@ -9,7 +9,7 @@ import 'package:myrideup/global/global.dart';
 import 'package:myrideup/global/utils/functions.dart';
 import 'package:myrideup/global/utils/toast.dart';
 import 'package:myrideup/screens/login_screen.dart';
-import 'package:myrideup/screens/main_page.dart';
+import 'package:myrideup/screens/main_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -81,8 +81,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
             children: [
               Column(
                 children: [
-                  // Image.asset(
-                  //     darkTheme ? 'images/boat.jpg' : 'images/bluescene.jpg'),
+                  Image.asset(darkTheme
+                      ? 'assets/images/boat.jpg'
+                      : 'assets/images/bluescene.jpg'),
                   const SizedBox(
                     height: 20,
                   ),

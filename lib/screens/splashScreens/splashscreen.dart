@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:myrideup/assistants/assistant_methods.dart';
 import 'package:myrideup/global/global.dart';
 import 'package:myrideup/screens/login_screen.dart';
-import 'package:myrideup/screens/main_page.dart';
+import 'package:myrideup/screens/main_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 3), () async {
       if (firebaseAuth.currentUser != null) {
         firebaseAuth.currentUser != null
-            ? AssistangMethods.readCurrentOnlineUserInfo()
+            ? AssistantMethods.readCurrentOnlineUserInfo()
             : null;
         Navigator.push(
             context, MaterialPageRoute(builder: (c) => const MainScreen()));
