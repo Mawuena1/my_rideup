@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:myrideup/screens/forgot_password_screen.dart';
-import 'package:myrideup/screens/main_page.dart';
+import 'package:myrideup/screens/main_screen.dart';
 import 'package:myrideup/screens/register_screen.dart';
 
 import '../global/global.dart';
@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
           builder: (context) => const MainScreen(),
         );
       }).catchError((errorMessage) {
-        Fluttertoast.showToast(msg: "Error Occured: \n $errorMessage");
+        Fluttertoast.showToast(msg: "Error Occured: $errorMessage");
       });
     } else {
       Fluttertoast.showToast(msg: "Not all fields are valid");
